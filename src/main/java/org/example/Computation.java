@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.exceptions.BuzzFizzIllegalArgumentException;
+import org.example.exceptions.ExceptionMessages;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -18,6 +20,10 @@ public class Computation {
     public static String computeForNumber(int number, @Nullable Map<Integer, String> outputForDivisor) {
         if (outputForDivisor == null || outputForDivisor.isEmpty()) {
             return Integer.toString(number);
+        }
+
+        if (outputForDivisor.containsKey(0)) {
+            throw new BuzzFizzIllegalArgumentException(ExceptionMessages.ZERO_AS_DIVISOR);
         }
 
         StringBuilder out = new StringBuilder();
