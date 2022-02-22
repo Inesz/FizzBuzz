@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.conditions.FizzBuzzDivisorsOutputs;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +14,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ComputationTest {
-    private final Map<Integer, String> DEFAULT_CONDITIONS = new Conditions().getOutputForDivisor();
+    private final Map<Integer, String> DEFAULT_CONDITIONS = new FizzBuzzDivisorsOutputs().getDivisorsOutputs();
 
     private final static String OUTPUT_FOR_100_NUMBERS = "1\r\n" +
             "2\r\n" +
