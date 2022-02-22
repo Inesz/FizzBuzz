@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.conditions.CustomDivisorsOutputs;
 import org.example.conditions.FizzBuzzDivisorsOutputs;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -118,13 +119,33 @@ class ComputationTest {
             "Buzz\r\n";
 
     @Test
-    @DisplayName("check computeFor100Numbers (entire output)")
-    void shouldComputeFor100Numbers() {
+    @DisplayName("check computeFor100Numbers (entire output) for FizzBuzzDivisorsOutputs")
+    void shouldCompute100NumbersForBuzzFizzConditions() {
         try {
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             System.setOut(new PrintStream(outputStream));
 
             Computation.computeFor100Numbers(DEFAULT_CONDITIONS);
+            assertEquals(OUTPUT_FOR_100_NUMBERS, outputStream.toString());
+        } finally {
+            System.setOut(System.out);
+        }
+    }
+
+    @Test
+    @DisplayName("check computeFor100Numbers (entire output) for CustomDivisorsOutputs")
+    void shouldCompute100NumbersForCustomConditions() {
+        try {
+            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outputStream));
+
+            CustomDivisorsOutputs customDivisorsOutputs = new CustomDivisorsOutputs();
+            DEFAULT_CONDITIONS.entrySet()
+                    .forEach(entry -> customDivisorsOutputs.addDivisorOutput(
+                            entry.getKey(), entry.getValue()));
+
+            Computation.computeFor100Numbers(customDivisorsOutputs.getDivisorsOutputs());
+
             assertEquals(OUTPUT_FOR_100_NUMBERS, outputStream.toString());
         } finally {
             System.setOut(System.out);
@@ -151,6 +172,4 @@ class ComputationTest {
     void shouldComputeForNullOrEmptyConditions(Map<Integer, String> outputForDivisor) {
         assertEquals("1", Computation.computeForNumber(1, outputForDivisor));
     }
-
-
 }
