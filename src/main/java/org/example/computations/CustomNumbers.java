@@ -4,11 +4,29 @@ import org.example.conditions.FizzBuzzDivisorsOutputs;
 
 import java.util.Map;
 
+/**
+ * Run computation for provided numbers.
+ */
 public class CustomNumbers implements ComputationInitializer {
+    /**
+     * computation implementation
+     */
     private final Computation computation;
+    /**
+     * computation parameters
+     */
     private final Map<Integer, String> outputForDivisor;
+    /**
+     * step between numbers
+     */
     private final int step;
+    /**
+     * min value
+     */
     private final int minValue;
+    /**
+     * max value
+     */
     private final int maxValue;
 
     private CustomNumbers(Computation computation, Map<Integer, String> outputForDivisor, int minValue, int maxValue, int step) {
