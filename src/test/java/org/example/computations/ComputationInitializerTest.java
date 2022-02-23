@@ -132,7 +132,7 @@ class ComputationInitializerTest {
     @Test
     @DisplayName("check entire output for FizzBuzzDivisorsOutputs and HundredNumbers")
     void shouldCompute100NumbersForBuzzFizzConditions() {
-        new HundredNumbers(new DivisionComputation(), DEFAULT_CONDITIONS).computationStart();
+        new HundredNumbers(new DivisorComputation(), DEFAULT_CONDITIONS).computationStart();
 
         assertEquals(OUTPUT_FOR_100_NUMBERS, outputStream.toString());
     }
@@ -143,7 +143,7 @@ class ComputationInitializerTest {
         CustomDivisorsOutputs customDivisorsOutputs = new CustomDivisorsOutputs();
         DEFAULT_CONDITIONS.forEach(customDivisorsOutputs::addDivisorOutput);
 
-        new HundredNumbers(new DivisionComputation(), customDivisorsOutputs.getDivisorsOutputs()).computationStart();
+        new HundredNumbers(new DivisorComputation(), customDivisorsOutputs.getDivisorsOutputs()).computationStart();
 
         assertEquals(OUTPUT_FOR_100_NUMBERS, outputStream.toString());
     }
@@ -157,7 +157,7 @@ class ComputationInitializerTest {
 
         CustomNumbers.getBuilder()
                 .setOutputForDivisor(customDivisorsOutputs.getDivisorsOutputs())
-                .setComputation(new DivisionComputation())
+                .setComputation(new DivisorComputation())
                 .setMinValue(1)
                 .setMaxValue(100)
                 .setStep(1)

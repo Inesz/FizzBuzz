@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-public class DivisionComputation implements Computation {
+public class DivisorComputation implements Computation {
 
     /**
      * Check if a provided Integer (entry in Map) is a divisor of a provided number (dividend). Return String (entry in Map) if true or number if false.

@@ -1,7 +1,7 @@
 package org.example;
 
 import org.example.computations.CustomNumbers;
-import org.example.computations.DivisionComputation;
+import org.example.computations.DivisorComputation;
 import org.example.computations.HundredNumbers;
 import org.example.conditions.CustomDivisorsOutputs;
 import org.example.conditions.FizzBuzzDivisorsOutputs;
@@ -17,14 +17,14 @@ public class Main {
     }
 
     private static void fizzBuzzComputation() {
-        new HundredNumbers(new DivisionComputation(), new FizzBuzzDivisorsOutputs().getDivisorsOutputs()).computationStart();
+        new HundredNumbers(new DivisorComputation(), new FizzBuzzDivisorsOutputs().getDivisorsOutputs()).computationStart();
     }
 
     private static void customComputation() {
         CustomDivisorsOutputs customDivisorsOutputs = new CustomDivisorsOutputs();
         customDivisorsOutputs.addDivisorOutput(2, "Hellozz");
         customDivisorsOutputs.addDivisorOutput(7, "Jazz");
-        new HundredNumbers(new DivisionComputation(), customDivisorsOutputs.getDivisorsOutputs()).computationStart();
+        new HundredNumbers(new DivisorComputation(), customDivisorsOutputs.getDivisorsOutputs()).computationStart();
     }
 
     private static void customComputationCustomScope() {

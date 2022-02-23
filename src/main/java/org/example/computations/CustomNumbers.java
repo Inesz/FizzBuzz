@@ -50,7 +50,7 @@ public class CustomNumbers implements ComputationInitializer {
     }
 
     public static final class CustomNumbersBuilder {
-        private Computation computation = new DivisionComputation();
+        private Computation computation = new DivisorComputation();
         private Map<Integer, String> outputForDivisor = new FizzBuzzDivisorsOutputs().getDivisorsOutputs();
         private int step = 1;
         private int minValue = 0;
