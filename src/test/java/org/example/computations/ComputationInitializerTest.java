@@ -141,8 +141,7 @@ class ComputationInitializerTest {
     @DisplayName("check entire output for CustomDivisorsOutputs and HundredNumbers")
     void shouldCompute100NumbersForCustomConditions() {
         CustomDivisorsOutputs customDivisorsOutputs = new CustomDivisorsOutputs();
-        DEFAULT_CONDITIONS.entrySet().forEach(entry -> customDivisorsOutputs.addDivisorOutput(
-                entry.getKey(), entry.getValue()));
+        DEFAULT_CONDITIONS.forEach(customDivisorsOutputs::addDivisorOutput);
 
         new HundredNumbers(new DivisionComputation(), customDivisorsOutputs.getDivisorsOutputs()).computationStart();
 
@@ -153,9 +152,8 @@ class ComputationInitializerTest {
     @DisplayName("check entire output for CustomDivisorsOutputs and CustomNumbers")
     void shouldComputeWithCustomNumbers() {
         CustomDivisorsOutputs customDivisorsOutputs = new CustomDivisorsOutputs();
-        DEFAULT_CONDITIONS.entrySet()
-                .forEach(entry -> customDivisorsOutputs.addDivisorOutput(
-                        entry.getKey(), entry.getValue()));
+
+        DEFAULT_CONDITIONS.forEach(customDivisorsOutputs::addDivisorOutput);
 
         CustomNumbers.getBuilder()
                 .setOutputForDivisor(customDivisorsOutputs.getDivisorsOutputs())
@@ -172,8 +170,9 @@ class ComputationInitializerTest {
     @Test
     @DisplayName("check error when adding 0 as divisor to CustomDivisorsOutputs")
     void shouldCustomDivisorsOutputsThrowError() {
+        CustomDivisorsOutputs customDivisorsOutput = new CustomDivisorsOutputs();
         Exception exception = assertThrows(BuzzFizzIllegalArgumentException.class,
-                () -> new CustomDivisorsOutputs().addDivisorOutput(0, "")
+                () -> customDivisorsOutput.addDivisorOutput(0, "")
         );
 
         assertEquals(ExceptionMessages.ZERO_AS_DIVISOR, exception.getMessage());
