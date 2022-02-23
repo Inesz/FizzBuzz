@@ -15,7 +15,14 @@ public class CustomDivisorsOutputs implements DivisorsOutputs {
         return Collections.unmodifiableMap(outputsForDivisors);
     }
 
-    public void addDivisorOutput(int divisor, String output) {
+    /**
+     * Add Entry to outputsForDivisors Map.
+     *
+     * @param divisor can not be 0
+     * @param output  value to output for divisor
+     * @throws BuzzFizzIllegalArgumentException 0 as divisor
+     */
+    public void addDivisorOutput(int divisor, String output) throws BuzzFizzIllegalArgumentException {
         if (divisor == 0) {
             throw new BuzzFizzIllegalArgumentException(ExceptionMessages.ZERO_AS_DIVISOR);
         }

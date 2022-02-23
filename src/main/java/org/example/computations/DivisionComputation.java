@@ -24,9 +24,10 @@ public class DivisionComputation implements Computation {
      * @param number           dividend
      * @param outputForDivisor collection of entries where Integer is divisor and String is output. Divisor can not be 0.
      * @return combined outputs
+     * @throws BuzzFizzIllegalArgumentException Map contains 0 as divisor
      */
     @Override
-    public String computeForNumber(int number, @Nullable Map<Integer, String> outputForDivisor) {
+    public String computeForNumber(int number, @Nullable Map<Integer, String> outputForDivisor) throws BuzzFizzIllegalArgumentException {
         if (outputForDivisor == null || outputForDivisor.isEmpty()) {
             return Integer.toString(number);
         }
