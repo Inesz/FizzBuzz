@@ -40,6 +40,7 @@ public class Main {
                 .computationStart();
     }
 
+    @SuppressWarnings("java:S106")
     private static void printSeparator() {
         System.out.println("==========================");
     }
