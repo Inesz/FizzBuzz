@@ -1,23 +1,14 @@
-package org.example;
+package org.example.computations;
 
 import org.example.exceptions.BuzzFizzIllegalArgumentException;
 import org.example.exceptions.ExceptionMessages;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.Map;
 
-public class Computation {
+public class DivisionComputation implements Computation {
 
-    private Computation() {
-    }
-
-    public static void computeFor100Numbers(Map<Integer, String> outputForDivisor) {
-        for (int i = 1; i <= 100; i++) {
-            System.out.println(computeForNumber(i, outputForDivisor));
-        }
-    }
-
-    public static String computeForNumber(int number, @Nullable Map<Integer, String> outputForDivisor) {
+    @Override
+    public String computeForNumber(int number, Map<Integer, String> outputForDivisor) {
         if (outputForDivisor == null || outputForDivisor.isEmpty()) {
             return Integer.toString(number);
         }
@@ -40,7 +31,7 @@ public class Computation {
         return (out.length() > 0) ? out.toString() : Integer.toString(number);
     }
 
-    private static boolean isDivisible(int dividend, Integer divisor) {
+    private boolean isDivisible(int dividend, Integer divisor) {
         return dividend % divisor == 0;
     }
 

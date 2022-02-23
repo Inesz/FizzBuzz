@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.computations.DivisionComputation;
+import org.example.computations.HundredNumbers;
 import org.example.conditions.CustomDivisorsOutputs;
 import org.example.conditions.FizzBuzzDivisorsOutputs;
 import org.example.exceptions.BuzzFizzIllegalArgumentException;
@@ -126,8 +128,8 @@ class ComputationTest {
         try {
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             System.setOut(new PrintStream(outputStream));
+            new HundredNumbers(new DivisionComputation(), DEFAULT_CONDITIONS).computationStart();
 
-            Computation.computeFor100Numbers(DEFAULT_CONDITIONS);
             assertEquals(OUTPUT_FOR_100_NUMBERS, outputStream.toString());
         } finally {
             System.setOut(System.out);
@@ -146,7 +148,7 @@ class ComputationTest {
                     .forEach(entry -> customDivisorsOutputs.addDivisorOutput(
                             entry.getKey(), entry.getValue()));
 
-            Computation.computeFor100Numbers(customDivisorsOutputs.getDivisorsOutputs());
+            new HundredNumbers(new DivisionComputation(), customDivisorsOutputs.getDivisorsOutputs()).computationStart();
 
             assertEquals(OUTPUT_FOR_100_NUMBERS, outputStream.toString());
         } finally {
@@ -169,20 +171,20 @@ class ComputationTest {
     @ParameterizedTest(name = "[{index}] {0} (number), {1} (output)")
     @CsvSource({"1,1", "10,Buzz", "15, Fizz Buzz", "-10,Buzz", "0,Fizz Buzz", "-8, -8"})
     void shouldComputeForNumber(int number, String expectation) {
-        assertEquals(expectation, Computation.computeForNumber(number, DEFAULT_CONDITIONS));
+        assertEquals(expectation, new DivisionComputation().computeForNumber(number, DEFAULT_CONDITIONS));
     }
 
     @DisplayName("check output when number has max or min int value")
     @ParameterizedTest(name = "[{index}] number: {0} (int limit)")
     @ValueSource(ints = {Integer.MIN_VALUE, Integer.MAX_VALUE})
     void shouldComputeForIntLimitAsNumber(int number) {
-        assertEquals(Integer.toString(number), Computation.computeForNumber(number, DEFAULT_CONDITIONS));
+        assertEquals(Integer.toString(number), new DivisionComputation().computeForNumber(number, DEFAULT_CONDITIONS));
     }
 
     @DisplayName("check output for null or empty conditions")
     @ParameterizedTest(name = "[{index}] conditions: {0}")
     @NullAndEmptySource
     void shouldComputeForNullOrEmptyConditions(Map<Integer, String> outputForDivisor) {
-        assertEquals("1", Computation.computeForNumber(1, outputForDivisor));
+        assertEquals("1", new DivisionComputation().computeForNumber(1, outputForDivisor));
     }
 }
