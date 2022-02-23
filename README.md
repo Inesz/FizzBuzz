@@ -1,10 +1,10 @@
 # FizzBuzz
 
-##How to run
+## How to run
 1. Run Main class.
 2. Run tests.
 
-##Solution description
+## Solution description
 Api enables:
 - set custom parameters (divisors and output) or use predefined FizzBuzz parameters.
 - set custom loop parameters (begin, end, step) or use predefined from 1 to 100 numbers.
