@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.computations.CustomNumbers;
 import org.example.computations.DivisionComputation;
 import org.example.computations.HundredNumbers;
 import org.example.conditions.CustomDivisorsOutputs;
@@ -123,7 +124,7 @@ class ComputationTest {
             "Buzz\r\n";
 
     @Test
-    @DisplayName("check computeFor100Numbers (entire output) for FizzBuzzDivisorsOutputs")
+    @DisplayName("check entire output for FizzBuzzDivisorsOutputs and HundredNumbers")
     void shouldCompute100NumbersForBuzzFizzConditions() {
         try {
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -137,7 +138,7 @@ class ComputationTest {
     }
 
     @Test
-    @DisplayName("check computeFor100Numbers (entire output) for CustomDivisorsOutputs")
+    @DisplayName("check entire output for CustomDivisorsOutputs and HundredNumbers")
     void shouldCompute100NumbersForCustomConditions() {
         try {
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -149,6 +150,33 @@ class ComputationTest {
                             entry.getKey(), entry.getValue()));
 
             new HundredNumbers(new DivisionComputation(), customDivisorsOutputs.getDivisorsOutputs()).computationStart();
+
+            assertEquals(OUTPUT_FOR_100_NUMBERS, outputStream.toString());
+        } finally {
+            System.setOut(System.out);
+        }
+    }
+
+    @Test
+    @DisplayName("check entire output for CustomDivisorsOutputs and CustomNumbers")
+    void shouldComputeWithCustomNumbers() {
+        try {
+            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outputStream));
+
+            CustomDivisorsOutputs customDivisorsOutputs = new CustomDivisorsOutputs();
+            DEFAULT_CONDITIONS.entrySet()
+                    .forEach(entry -> customDivisorsOutputs.addDivisorOutput(
+                            entry.getKey(), entry.getValue()));
+
+            CustomNumbers.getBuilder()
+                    .setOutputForDivisor(customDivisorsOutputs.getDivisorsOutputs())
+                    .setComputation(new DivisionComputation())
+                    .setMinValue(1)
+                    .setMaxValue(100)
+                    .setStep(1)
+                    .build()
+                    .computationStart();
 
             assertEquals(OUTPUT_FOR_100_NUMBERS, outputStream.toString());
         } finally {

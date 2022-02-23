@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.computations.CustomNumbers;
 import org.example.computations.DivisionComputation;
 import org.example.computations.HundredNumbers;
 import org.example.conditions.CustomDivisorsOutputs;
@@ -11,6 +12,8 @@ public class Main {
         fizzBuzzComputation();
         printSeparator();
         customComputation();
+        printSeparator();
+        customComputationCustomScope();
     }
 
     private static void fizzBuzzComputation() {
@@ -22,6 +25,19 @@ public class Main {
         customDivisorsOutputs.addDivisorOutput(2, "Hellozz");
         customDivisorsOutputs.addDivisorOutput(7, "Jazz");
         new HundredNumbers(new DivisionComputation(), customDivisorsOutputs.getDivisorsOutputs()).computationStart();
+    }
+
+    private static void customComputationCustomScope() {
+        CustomDivisorsOutputs customDivisorsOutputs = new CustomDivisorsOutputs();
+        customDivisorsOutputs.addDivisorOutput(3, "Customzz");
+
+        CustomNumbers.getBuilder()
+                .setOutputForDivisor(customDivisorsOutputs.getDivisorsOutputs())
+                .setMinValue(3)
+                .setMaxValue(20)
+                .setStep(2)
+                .build()
+                .computationStart();
     }
 
     private static void printSeparator() {
