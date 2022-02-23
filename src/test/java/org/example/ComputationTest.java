@@ -2,6 +2,8 @@ package org.example;
 
 import org.example.conditions.CustomDivisorsOutputs;
 import org.example.conditions.FizzBuzzDivisorsOutputs;
+import org.example.exceptions.BuzzFizzIllegalArgumentException;
+import org.example.exceptions.ExceptionMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -150,6 +152,17 @@ class ComputationTest {
         } finally {
             System.setOut(System.out);
         }
+    }
+
+    @Test
+    @DisplayName("check error when adding 0 as divisor to CustomDivisorsOutputs")
+    void shouldCustomDivisorsOutputsThrowError() {
+        Exception exception = assertThrows(BuzzFizzIllegalArgumentException.class,
+                () -> {
+                    new CustomDivisorsOutputs().addDivisorOutput(0, "");
+                });
+
+        assertEquals(ExceptionMessages.ZERO_AS_DIVISOR, exception.getMessage());
     }
 
     @DisplayName("check output for input data")
