@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Computation interface
  */
-public interface Computation {
+interface Computation {
     /**
      * Make a computation for given input.
      *

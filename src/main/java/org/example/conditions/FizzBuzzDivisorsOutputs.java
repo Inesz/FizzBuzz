@@ -5,9 +5,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class FizzBuzzDivisorsOutputs implements DivisorsOutputs {
-    private final static TreeMap<Integer, String> OUTPUT_FOR_DIVISOR = new TreeMap<>();
+    private static final TreeMap<Integer, String> OUTPUT_FOR_DIVISOR = new TreeMap<>();
 
-    {
+    static {
         OUTPUT_FOR_DIVISOR.put(3, "Fizz");
         OUTPUT_FOR_DIVISOR.put(5, "Buzz");
     }

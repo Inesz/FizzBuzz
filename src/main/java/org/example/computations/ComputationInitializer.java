@@ -3,7 +3,7 @@ package org.example.computations;
 /**
  * Generic start for computation.
  */
-public interface ComputationInitializer {
+interface ComputationInitializer {
 
     /**
      * Run computation.

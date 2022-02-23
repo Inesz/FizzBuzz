@@ -16,9 +16,6 @@ public class HundredNumbers implements ComputationInitializer {
 
     @Override
     @SuppressWarnings("java:S106")
-    /**
-     * {@inheritdoc}
-     */
     public void computationStart() {
         for (int i = 1; i <= 100; i++) {
             System.out.println(computation.computeForNumber(i, outputForDivisor));
