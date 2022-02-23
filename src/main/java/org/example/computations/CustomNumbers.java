@@ -20,6 +20,7 @@ public class CustomNumbers implements ComputationInitializer {
     }
 
     @Override
+    @SuppressWarnings("java:S106")
     public void computationStart() {
         for (int i = minValue; i <= maxValue; i = i + step) {
             System.out.println(computation.computeForNumber(i, outputForDivisor));
